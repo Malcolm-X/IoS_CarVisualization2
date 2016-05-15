@@ -21,12 +21,12 @@ under the License.
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>de.snet</groupId>
-	<artifactId>car_visualization</artifactId>
+	<artifactId>car_visualization_preprocessing</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Flink Quickstart Job</name>
-	<url>http://www.myorganization.org</url>
+	<name>Car Visualization Preprocessing</name>
+	<url>https://github.com/JonathanH5/IoS_CarVisualization.git</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -273,15 +273,14 @@ under the License.
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source> <!-- If you want to use Java 8, change this to "1.8" -->
-					<target>1.7</target> <!-- If you want to use Java 8, change this to "1.8" -->
+					<source>1.8</source> <!-- If you want to use Java 8, change this to "1.8" -->
+					<target>1.8</target> <!-- If you want to use Java 8, change this to "1.8" -->
 				</configuration>
 			</plugin>
 		</plugins>
 		
 			
 		<!-- If you want to use Java 8 Lambda Expressions uncomment the following lines -->
-		<!--
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -340,7 +339,6 @@ under the License.
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		-->
 		
 	</build>
 </project>
