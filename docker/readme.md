@@ -25,8 +25,17 @@ To install docker just follow the guide you can find on the official docker webs
 
 [docker install guide](https://docs.docker.com/engine/installation/)
 
-### docker compose
+after install docker make sure you can access docker commands as normal user. Therefore on Linux machines:
 
+`sudo groupadd docker`
+
+`sudo usermod -aG docker <user_name>`
+
+`sudo service docker restart`
+
+Further you have to re-login as mentioned user. This will help us pull new code while building new docker containers.
+
+### docker compose
 To deploy multi-service environment using docker containers its best to have a single deployment-tool building the whole stack. Therefore [docker compose](https://docs.docker.com/compose/overview/) is it good way of doing this. In this project each service will run in a seperate container, but build all together with docker compose.
 
 Further you can find the current version of the compose script here. This file defines all the service and container and further there configuration, like port bindings, bridges, images, names etc. The defined workflow inside the containers will be defined by the Dockerfile which has do be provided for each service(container).
