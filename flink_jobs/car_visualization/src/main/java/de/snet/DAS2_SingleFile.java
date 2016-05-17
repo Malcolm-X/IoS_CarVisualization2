@@ -34,7 +34,11 @@ import org.slf4j.LoggerFactory;
  * Job to process the DAS2 data set, remove all unnecessary keys and save everything in one file.
  * Creates another file that stores all distinct deviceIDs.
  * 
- * outputFile: DeviceID - Trip - Time - GPS_Heading - GPS_Heading - GPS_Longitude - GPS_UTC_Time
+ * outputFile: 
+ * DeviceID - Trip - Time - GPS_Heading - GPS_Heading - GPS_Longitude - GPS_Speed - GPS_UTC_Time - 
+ * InVehicle_ABS_State - InVehicle_Brake_Status - InVehicle_Longitudinal_Accel - InVehicle_Stability_Control_Status
+ * InVehicle_Traction_Control_Status
+ * 
  * outputIDs: DeviceID
  */
 public class DAS2_SingleFile {
@@ -54,11 +58,13 @@ public class DAS2_SingleFile {
 						sourcePath, outputPathFile, outputPathIDs));
 		
 		// read in source files
-		DataSet<Tuple7<Integer, Integer, Integer, Double, Double, Double, Long>> source = env.readCsvFile(sourcePath)
-				.ignoreInvalidLines() //might be a bad idea
-				.includeFields("1110001110001")
+		DataSet<Tuple13<Integer, Integer, Integer, Double, Double, Double, 
+			Double, Long, Integer, Integer, Double, Integer, Integer>> source = env.readCsvFile(sourcePath)
+				//.ignoreInvalidLines() //might be a bad idea
+				.includeFields("11100011100110001101001001")
 				.ignoreFirstLine()
-				.types(Integer.class, Integer.class, Integer.class, Double.class, Double.class, Double.class, Long.class);
+				.types(Integer.class, Integer.class, Integer.class, Double.class, Double.class, Double.class, 
+						Double.class, Long.class, Integer.class, Integer.class, Double.class, Integer.class, Integer.class);
 		
 		// sort distinct device IDs and save to file
 		source.map(x -> new Tuple1<Integer>(x.f0))
