@@ -1,0 +1,22 @@
+Sending build context to Docker daemon 20.99 kB
+Step 1 : FROM ubuntu:14.04
+ ---> 90d5884b1ee0
+Step 2 : MAINTAINER mwall
+ ---> Using cache
+ ---> c68727c2b959
+Step 3 : LABEL version "1.0"
+ ---> Using cache
+ ---> bbbb022835ee
+Step 4 : LABEL description "car Visualization Project at IoS Project TU-Berlin 2016. Frontend Service"
+ ---> Using cache
+ ---> 874478154d9d
+Step 5 : RUN apt-get update && apt-get install -y --force-yes apache2
+ ---> Using cache
+ ---> 53181b5302ee
+Step 6 : EXPOSE 80 443
+ ---> Using cache
+ ---> c3dba6bfccdb
+Step 7 : ENTRYPOINT /usr/sbin/apache2ctl -D FOREGROUND
+ ---> Using cache
+ ---> 990bc7bbe77e
+Successfully built 990bc7bbe77e
