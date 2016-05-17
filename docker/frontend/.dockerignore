@@ -1,3 +1,4 @@
 Readme.md
 build_frontend_container.sh
 .git*
+logs/*
