@@ -1,15 +1,19 @@
 #  Docker environment
 
-:with_toc_data
-
 ## Structure
 
 |-main.yml docker compose file defining whole setup 
+
 |--frontend frontend folder
+
 |--frontend/Dockerfile frontend Dockerfile
+
 |--frontend/files files belonging to frontend container(copied into)
+
 |--mongodb mongodb folder 
+
 |--mongodb/Dockerfile mongodb Dockerfile
+
 |--R/Dockerfile R-middleware Dockerfile
 
 Above structure shows how folder structure is designed. 
