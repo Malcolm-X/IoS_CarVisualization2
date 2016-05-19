@@ -10,8 +10,7 @@ library(curl) # make the jsonlite suggested dependency explicit
 library(dygraphs)
 library(xts)
 
-#cars_weather <- read.csv("/Users/austintodd/Documents/Work/Projects/AIL/Code/cars_weather.csv",header=TRUE,sep=",")
-#uniqueIDs <- unique(cars_weather$DeviceID)
+
 
 shinyServer(function(input, output, session) {
 

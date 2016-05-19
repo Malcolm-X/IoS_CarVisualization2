@@ -24,6 +24,8 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
 
 WORKDIR /home
 
-ENTRYPOINT R -e "shiny::runApp('TestApplication' , port = 3838, host = '0.0.0.0')"
+#ENTRYPOINT R -e "shiny::runApp('TestApplication' , port = 3838, host = '0.0.0.0')"
+
+ENTRYPOINT R -e "shiny::runApp('ConnectedCar' , port = 3838, host = '0.0.0.0')"
 
 EXPOSE 3838

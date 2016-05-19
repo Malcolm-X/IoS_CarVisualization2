@@ -25,4 +25,4 @@ echo "starting container with iD= $Container_ID "
 echo
 
 #run container with binding ports
-docker run -it --rm -p $SHINY_PORT:3838 --name "$NAME" -v $(pwd)/src/ConnectedCar:/home/ConnectedCar -v $(pwd)/src/TestApplication:/home/TestApplication "$Container_ID"
+docker run -it --rm -p $SHINY_PORT:3838 --name "$NAME" -v $(pwd)/src/ConnectedCar:/home/ConnectedCar -v $(pwd)/src/TestApplication:/home/TestApplication -v $(pwd)/test_data/:/home/test_data "$Container_ID"
