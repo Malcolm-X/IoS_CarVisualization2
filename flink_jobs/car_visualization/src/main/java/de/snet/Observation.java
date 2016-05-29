@@ -18,22 +18,21 @@ public class Observation {
 	public Integer deviceID;
 	public Integer trip;
 	public Integer time;
-	public Double headingGPS;
-	public Double latitudeGPS;
-	public Double longitudeGPS;
-	public Long utcTimeGPS;
-	public Double speed;
-	public Double acceleration;
-	public Integer brakeStatus;
-	public Integer absStatus;
-	public Integer tractionControlStatus;
-	public Integer stabilityControlStatus;
+	public Double headingGPS = null;
+	public Double latitudeGPS = null;
+	public Double longitudeGPS = null;
+	public Long utcTimeGPS = null;
+	public Double speed = null;
+	public Double acceleration = null;
+	public Integer brakeStatus = null;
+	public Integer absStatus = null;
+	public Integer tractionControlStatus = null;
+	public Integer stabilityControlStatus = null;
 	
 	public Observation() {}
 	
 	/**
 	 * Splits a DAS2 line String by "," and returns a new DAS2_Observation.
-	 * Relevant fields: 0,1,2,6,7,8,11,12,16,17,19,22,25
 	 * @param line
 	 * @return DAS2_Observation with above relevant fields
 	 */
@@ -51,17 +50,71 @@ public class Observation {
 			obs.headingGPS = parseDouble(f[6]);
 			obs.latitudeGPS = parseDouble(f[7]);
 			obs.longitudeGPS = parseDouble(f[8]);
-			obs.speed = parseDouble(f[11]);
+			obs.speed = parseDouble(f[19]);
 			obs.utcTimeGPS = parseLong(f[12]);
 			obs.absStatus = parseInt(f[16]);
 			obs.brakeStatus = parseInt(f[17]);
-			obs.acceleration = parseDouble(f[22]);
+			obs.acceleration = parseDouble(f[20]);
 			obs.stabilityControlStatus = parseInt(f[22]);
 			obs.tractionControlStatus = parseInt(f[25]);
 		} catch (Exception e) {
 			log.warn("Invalid line: " + line);
 			log.warn(e.getMessage());
 			return null;
+		}
+		// recalculate some fields based on specifications for later joins
+		if (obs.brakeStatus != null) {
+			if (obs.brakeStatus > 0) {
+				obs.brakeStatus = 1;
+			}
+		}
+		if (obs.absStatus != null) {
+			switch (obs.absStatus) {
+				case 0:
+					obs.absStatus = null;
+					break;
+				case 1:
+					obs.absStatus = 0;
+					break;
+				case 2:
+					obs.absStatus = 1;
+					break;
+				case 3:
+					obs.absStatus = 1;
+					break;
+				default:
+					obs.absStatus = null;
+			}
+		}
+		if (obs.tractionControlStatus != null) {
+			switch (obs.tractionControlStatus) {
+				case 0:
+					obs.tractionControlStatus = null;
+					break;
+				case 1:
+					obs.tractionControlStatus = 0;
+					break;
+				case 2:
+					obs.tractionControlStatus = 1;
+					break;
+				default:
+					obs.tractionControlStatus = null;
+			}
+		}
+		if (obs.stabilityControlStatus != null) {
+			switch (obs.stabilityControlStatus) {
+				case 0:
+					obs.stabilityControlStatus = null;
+					break;
+				case 1:
+					obs.stabilityControlStatus = 0;
+					break;
+				case 2:
+					obs.stabilityControlStatus = 1;
+					break;
+				default:
+					obs.stabilityControlStatus = null;
+			}
 		}
 		return obs;
 	}
