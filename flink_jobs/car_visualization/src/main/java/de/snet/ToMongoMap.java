@@ -20,6 +20,7 @@ public class ToMongoMap implements org.apache.flink.api.common.functions.MapFunc
     
     @Override
     public Tuple2<Text, BSONWritable> map(Observation observation) throws Exception {
+
 //        Gson gson = new Gson();
 //        GsonBuilder builder = new GsonBuilder();
 //        builder.registerTypeAdapter(Point.class, new GeoPointConverter());
@@ -29,9 +30,98 @@ public class ToMongoMap implements org.apache.flink.api.common.functions.MapFunc
         Tuple2<Text,BSONWritable> result = new Tuple2<>();
         result.f0 = new Text("Device" + observation.deviceID);
         String json = gson.toJson(observation);
+        System.out.println("gson.toJson(observation);#\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n" +
+                "                #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #");
+        System.out.println(json);
+
         DBObject bson = (DBObject) JSON.parse(json);
+        System.out.println("BObject bson = (DBObject) JSON.parse(json);#\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n" +
+                "                #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #");
         result.f1 = new BSONWritable(bson);
-        result.f1 = new BSONWritable();
+        System.out.println("result.f1 = new BSONWritable(bson);#\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n" +
+                "                #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        #\n" +
+                "        ##\n" +
+                "        #");
+//        result.f1 = new BSONWritable();
         return result;
     }
 }

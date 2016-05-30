@@ -1,7 +1,5 @@
 package de.snet;
 
-import com.mongodb.client.model.geojson.Point;
-import com.mongodb.client.model.geojson.Position;
 import com.mongodb.hadoop.io.BSONWritable;
 import com.mongodb.hadoop.mapred.MongoInputFormat;
 import com.mongodb.hadoop.mapred.MongoOutputFormat;
@@ -49,6 +47,7 @@ public class Persistence {
 
 	public static void main(String[] args) throws Exception {
 		// set up the execution environment
+		System.setProperty("hadoop.home.dir", "c:\\winutil\\");
 		final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         HadoopInputFormat<BSONWritable, BSONWritable> hadoopIn;
         JobConf conf = new JobConf();
