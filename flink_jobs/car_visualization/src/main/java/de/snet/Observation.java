@@ -1,5 +1,6 @@
 package de.snet;
 
+import org.omg.CORBA.DoubleHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +20,11 @@ public class Observation {
 	public Integer trip;
 	public Integer time;
 	public Double headingGPS = null;
-	public Double latitudeGPS = null;
-	public Double longitudeGPS = null;
+//	public Double latitudeGPS = null;
+//	public Double longitudeGPS = null;
+	//This replaces long/lat for gson/mongo compatibility
+//	public Double[] point2d;
+//	public Point point2d = null;
 	public Long utcTimeGPS = null;
 	public Double speed = null;
 	public Double acceleration = null;
@@ -28,8 +32,9 @@ public class Observation {
 	public Integer absStatus = null;
 	public Integer tractionControlStatus = null;
 	public Integer stabilityControlStatus = null;
-	
-	public Observation() {}
+
+	public Observation() {
+	}
 	
 	/**
 	 * Splits a DAS2 line String by "," and returns a new DAS2_Observation.
@@ -48,8 +53,9 @@ public class Observation {
 			obs.trip = Integer.parseInt(f[1]);
 			obs.time = Integer.parseInt(f[2]);
 			obs.headingGPS = parseDouble(f[6]);
-			obs.latitudeGPS = parseDouble(f[7]);
-			obs.longitudeGPS = parseDouble(f[8]);
+			Double latitudeGPS = parseDouble(f[7]);
+			Double longitudeGPS = parseDouble(f[8]);
+//			obs.point2d = new Point(Double.valueOf(longitudeGPS), Double.valueOf(latitudeGPS));
 			obs.speed = parseDouble(f[19]);
 			obs.utcTimeGPS = parseLong(f[12]);
 			obs.absStatus = parseInt(f[16]);
@@ -160,17 +166,30 @@ public class Observation {
 
 	@Override
 	public String toString() {
-		return deviceID + "," + trip + "," + time + "," + headingGPS + "," + latitudeGPS + "," + longitudeGPS + ","
+		return deviceID + "," + trip + "," + time + "," + headingGPS + ","
+//				+ latitudeGPS + "," + longitudeGPS + ","
+//				+ point2d.latitude + "," + point2d.longitude +","
 				+ speed + "," + utcTimeGPS + "," + absStatus + "," + brakeStatus + ","
 				+ acceleration + "," + stabilityControlStatus + "," + tractionControlStatus;
 	}
 	
 	public String toString2() {
 		return "DAS2_Observation [deviceID=" + deviceID + ", trip=" + trip + ", time=" + time + ", headingGPS="
-				+ headingGPS + ", latitudeGPS=" + latitudeGPS + ", longitudeGPS=" + longitudeGPS
+				+ headingGPS + ", latitudeGPS="
+//				+ latitudeGPS
+//				+ point2d.latitude
+				+ ", longitudeGPS="
+//				+ longitudeGPS
+//				+ point2d.longitude
 				+ ", utcTimeGPS=" + utcTimeGPS + ", speed=" + speed + ", acceleration=" + acceleration 
 				+ ", brakeStatus=" + brakeStatus + ", absStatus=" + absStatus
 				+ ", stabilityControlStatus=" + stabilityControlStatus
 				+ ", tractionControlStatus=" + tractionControlStatus + "]";
 	}
+	/**
+	 * utility method to create a point from 2 double values
+	 */
+//	public void setPoint(Double longitude, Double latitude){
+//		point2d = new Point(longitude, latitude);
+//	}
 }

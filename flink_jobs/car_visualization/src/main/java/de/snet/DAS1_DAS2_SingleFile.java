@@ -2,6 +2,7 @@ package de.snet;
 
 import java.text.MessageFormat;
 
+import com.mongodb.client.model.geojson.Position;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.accumulators.IntCounter;
 import org.apache.flink.api.common.functions.FlatMapFunction;
@@ -358,8 +359,9 @@ public class DAS1_DAS2_SingleFile {
 		obs.trip = arg0.f1;
 		obs.time = arg0.f2;
 		obs.headingGPS = arg0.f3;
-		obs.latitudeGPS = arg0.f4;
-		obs.longitudeGPS = arg0.f5;
+//		obs.point2d = new Point(arg0.f5,arg0.f4);
+//		obs.point2d[1] = arg0.f4;
+//		obs.point2d[0] = arg0.f5;
 		obs.brakeStatus = arg0.f6;
 		if (arg1 != null) {
 			this.hasSpeed.add(1);
