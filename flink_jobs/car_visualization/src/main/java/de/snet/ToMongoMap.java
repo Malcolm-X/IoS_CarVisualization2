@@ -17,6 +17,7 @@ public class ToMongoMap implements org.apache.flink.api.common.functions.MapFunc
 //
 //    }
 
+    
     @Override
     public Tuple2<Text, BSONWritable> map(Observation observation) throws Exception {
 //        Gson gson = new Gson();
